@@ -26,12 +26,12 @@
 - Frontend: HTML, CSS (Bootstrap 5)
 
 ## 프로젝트 구조
-spartamarket/
-├── accounts/              # 사용자 관련 앱
-├── products/             # 상품 관련 앱
-├── templates/            # 공통 템플릿
-├── media/               # 미디어 파일 (이미지 등)
-└── spartamarket/        # 프로젝트 설정
+- spartamarket/
+- ├── accounts/              # 사용자 관련 앱
+- ├── products/             # 상품 관련 앱
+- ├── templates/            # 공통 템플릿
+- ├── media/               # 미디어 파일 (이미지 등)
+- └── spartamarket/        # 프로젝트 설정
 
 ## 실행 방법
 
