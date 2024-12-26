@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" class="img-fluid">
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+        <h2>{{ product.title }}</h2>
+        <p class="text-muted">판매자: <a href="{% url 'accounts:profile' product.seller.username %}">{{ product.seller.username }}</a></p>
+        <p class="h3">{{ product.price }}원</p>
+        <p>{{ product.description }}</p>
+        <p>등록일: {{ product.created_at|date }}</p>
+        
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'products:product_like' product.pk %}" class="d-inline">
+                {% csrf_token %}
+                {% if user in product.likes.all %}
+                    <button class="btn btn-danger">찜 취소</button>
+                {% else %}
+                    <button class="btn btn-success">찜하기</button>
+                {% endif %}
+            </form>
+            
+            {% if user == product.seller %}
+                <a href="{% url 'products:product_update' product.pk %}" class="btn btn-warning">수정</a>
+                <form action="{% url 'products:product_delete' product.pk %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
